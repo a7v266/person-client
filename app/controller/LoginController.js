@@ -1,4 +1,4 @@
-Ext.define('Sandbox.service.LoginManager', {
+Ext.define('Sandbox.controller.LoginController', {
     singleton: true,
 
     isLoggedIn: function () {
@@ -38,13 +38,11 @@ Ext.define('Sandbox.service.LoginManager', {
                 'password': password
             },
             success: function (response) {
-                console.info('login success');
-                Sandbox.service.LoginManager.saveProfile(response.responseText);
+                Sandbox.controller.LoginController.saveProfile(response.responseText);
                 deferred.resolve(response, response);
             },
             failure: function (response) {
-                console.info('login failure');
-                Sandbox.service.LoginManager.removeProfile();
+                Sandbox.controller.LoginController.removeProfile();
                 deferred.reject(response, response);
             }
         });
@@ -57,12 +55,10 @@ Ext.define('Sandbox.service.LoginManager', {
             url: '/api/logout',
             method: 'POST',
             success: function (response) {
-                console.info('logout success');
-                Sandbox.service.LoginManager.removeProfile();
+                Sandbox.controller.LoginController.removeProfile();
                 deferred.resolve(response, response);
             },
             failure: function (response) {
-                console.info('logout failure');
                 deferred.reject(response, response);
             }
         });

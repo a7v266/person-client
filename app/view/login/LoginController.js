@@ -17,7 +17,7 @@ Ext.define('Sandbox.view.login.LoginController', {
         var form = this.lookup('form');
         if (form.isValid()) {
             var values = form.getValues();
-            Sandbox.service.LoginManager.login(values.username, values.password)
+            Sandbox.controller.LoginController.login(values.username, values.password)
                 .then(() => {
                     this.fireViewEvent('login');
                     this.getView().close();

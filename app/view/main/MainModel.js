@@ -3,7 +3,7 @@ Ext.define('Sandbox.view.main.MainModel', {
     alias: 'viewmodel.main',
     formulas: {
         username: function (get) {
-            return Sandbox.service.LoginManager.getUsername();
+            return Sandbox.controller.LoginController.getUsername();
         }
     }
 });

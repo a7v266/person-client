@@ -16,7 +16,7 @@ Ext.define('Sandbox.Application', {
     launch: function () {
 
         Ext.Ajax.on('beforerequest', function (connection, options) {
-            let profile = Sandbox.service.LoginManager.getProfile();
+            let profile = Sandbox.controller.LoginController.getProfile();
             if (profile) {
                 options.headers = options.headers || {};
                 options.headers['X-Auth-Token'] = profile.token;
@@ -46,6 +46,9 @@ Ext.define('Sandbox.Application', {
                         break;
                     case 401:
                         html = 'Доступ запрещен';
+                        Sandbox.controller.LoginController.removeProfile();
+                        Sandbox.getApplication().getMainView().close();
+                        Sandbox.getApplication().showLogin();
                         break;
                     default:
                         try {
@@ -75,7 +78,7 @@ Ext.define('Sandbox.Application', {
             Ext.fly('initialLoader').destroy();
         }
 
-        if (Sandbox.service.LoginManager.isLoggedIn()) {
+        if (Sandbox.controller.LoginController.isLoggedIn()) {
             this.showApplication();
         } else {
             this.showLogin();
