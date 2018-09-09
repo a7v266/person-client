@@ -1,21 +1,11 @@
-/**
- * This class is the controller for the main view for the application. It is specified as
- * the "controller" of the Main view class.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('Sandbox.view.main.MainController', {
     extend: 'Ext.app.ViewController',
-
     alias: 'controller.main',
-
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    },
-
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
+    logout: function () {
+        Sandbox.service.LoginManager.logout().then(() => {
+            console.info('fire logout event');
+            this.fireViewEvent('logout');
+            this.getView().close();
+        });
     }
 });

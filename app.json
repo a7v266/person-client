@@ -16,6 +16,7 @@
      *      ]
      */
     "requires": [
+        "font-pictos",
         "font-awesome"
     ],
 
@@ -112,7 +113,8 @@
          *      +-----------------+
          */
         "etc": [
-            "sass/etc/all.scss"
+            "sass/etc/all.scss",
+            "sass/etc/spinner.scss"
         ],
 
         /**
